@@ -17,7 +17,7 @@ class MarkovChain:
         """
         Preprocessing includes tokenization by words in Al-Qur'an
         """
-        tokenized = re.findall(r'[\u0600-\u06FF]+', string)
+        tokenized = re.findall(r'[\u0600-\u06D0]+', string)
         return tokenized
 
     def add_document(self, string):
