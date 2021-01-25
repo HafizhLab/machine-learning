@@ -2,7 +2,7 @@
 Prediction by word is implemented using N-gram Language Model approach which is modified from Shah (2020) version.
 
 # Example Usage
-Train model to learn lookup dictionary for N-gram prediction
+Train model to learn lookup dictionary for N-gram prediction. Model can only be trained on string input (``ayah: String``) using ``add_document`` function.
 ```python
 from lm.markovchain import MarkovChain
 
