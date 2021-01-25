@@ -68,20 +68,22 @@ class MarkovChain:
     def twowords(self, string, p):
         # Find next word given two words known, string is tokenized
         suggest = Counter(self.lookup_dict[tuple(string)]).most_common()[:p]
-        if len(suggest)==0:
-            return self.oneword(string[-1], p=p)
+        # Backoff
+        if len(suggest) < p:
+            return suggest + self.oneword(string[-1], p=p-len(suggest))
         return suggest
 
     def threewords(self, string, p):
         # Find next word given three words known, string is tokenized
         suggest = Counter(self.lookup_dict[tuple(string)]).most_common()[:p]
-        if len(suggest)==0:
-            return self.twowords(string[-2:], p=p)
+        # Backoff
+        if len(suggest) < p:
+            return suggest + self.twowords(string[-2], p=p-len(suggest))
         return suggest
     
     def morewords(self, string, p):
         # Find next word given more than three word known, string is tokenized
-        # Will takes only three previous words
+        # Backoff: will takes only three previous words
         return self.threewords(string[-3:], p)
 
     def next_word(self, string, p=3):
