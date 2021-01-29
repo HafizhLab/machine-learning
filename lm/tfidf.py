@@ -31,4 +31,4 @@ class TFIDF:
                 print("Scores:", scores[i])
                 print("Text:\n", corpus[i])
 
-        return [(id, corpus[i]) for id in top_n_id]
+        return [(id, corpus[id]) for id in top_n_id]
