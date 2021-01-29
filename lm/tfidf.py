@@ -12,6 +12,7 @@ class TFIDF:
         self.model = TfidfVectorizer()
 
     def _preprocess(self, string):
+        string = string.strip()
         tokenized = re.findall(r'[\u0600-\u06FF]+', string)
         return tokenized
 
@@ -30,4 +31,4 @@ class TFIDF:
                 print("Scores:", scores[i])
                 print("Text:\n", corpus[i])
 
-        return [(scores[id], id) for id in top_n_id]
+        return [(id, corpus[i]) for id in top_n_id]
